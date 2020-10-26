@@ -19,19 +19,19 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
 
-      # Runs a single command using the runners shell
-      - name: Installing Node
-        uses: actions/setup-node@v2-beta
-        with:
-          node-version: '12'
+    # Runs a single command using the runners shell
+    - name: Installing Node
+      uses: actions/setup-node@v2-beta
+      with:
+        node-version: '12'
       
-      # Step to install Surge
-      - name: Installing Surge
-        run: npm install --global surge
+    # Step to install Surge
+    - name: Installing Surge
+      run: npm install --global surge
       
-      # Deploy App to Surge
-      - name: Deploying project to Surge
-        run: surge ./jsprojectsbyarsalan.surge.sh --token ${{ secrets.SURGE_TOKEN }}     
+    # Deploy App to Surge
+    - name: Deploying project to Surge
+      run: surge ./ jsprojectsbyarsalan.surge.sh --token ${{ secrets.SURGE_TOKEN }}
