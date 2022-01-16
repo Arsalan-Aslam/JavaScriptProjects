@@ -10,6 +10,9 @@ const gradeResult = document.getElementById('result');
 
 form.addEventListener('submit', function(e) {
     e.preventDefault();
+    if(marksObtained.value > totalMarks.value) {
+        alert("Total marks cannot be less than marks obtained. Please enter correct total marks.");
+    } else {
     const percent = Math.floor((marksObtained.value / totalMarks.value) * 100);
     // console.log(percent);
     let grade = "";
@@ -30,9 +33,12 @@ form.addEventListener('submit', function(e) {
     console.log(grade, percent);
     console.log(`Your grade is: ${grade} (${percent}%)`);
     gradeResult.innerHTML = `Your grade is: <strong>${grade}</strong> (${percent}%)`
+    }
     marksObtained.value = "";
     totalMarks.value = "";
+    
 });
+
 
 /*
 function calcGrades(e) {
