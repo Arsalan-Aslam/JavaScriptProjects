@@ -99,8 +99,8 @@ function editNote(id) {
 
     for (let i = 0; i < notes.length; i++) {
         if (notes[i].id === id) {
-            notes[i].title = prompt("Enter note title here.");
-            notes[i].description = prompt("Enter note description here.");
+            notes[i].title = prompt("Please update the title.", notes[i].title);
+            notes[i].description = prompt("Please update the description.", notes[i].description);
         }
     }
     // initialize the app again to update the DOM
