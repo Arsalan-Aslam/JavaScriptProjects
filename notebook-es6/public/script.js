@@ -3,6 +3,7 @@ const list = document.getElementById('list');
 const form = document.getElementById('add-form');
 const noteTitle = document.getElementById('note-title');
 const noteDescr = document.getElementById('note-descr');
+const delAll = document.getElementById('del-all');
 
 
 // Temporary array of notes - to be replaced with local storage
@@ -20,9 +21,9 @@ let notes = Notes;
 
 // Function to display notes in DOM - Notes section
 const displayNote = (note) => {
-    // Create a list item for the transaction
+    // Create a div for the note
     const noteDiv = document.createElement('div');
-    // Determine class based on transaction type. If positive, then credit, otherwise debit
+    // Add note class to the div
     noteDiv.classList.add('note');
     // Assign the innerHTML for the note div
     noteDiv.innerHTML = `
@@ -49,16 +50,16 @@ const addNote = (e) => {
     // Check id form has valid data
     if ( noteTitle.value.trim() === '' || noteDescr.value.trim() === '') {
         // Display error message if form is not complete
-        alert('Please provide a title and description for the note')
+        alert('Please provide a title and description for the note');
     } else {
-        // Create an object for the transaction containing id, text for the title, and transaction the amount
+        // Create an object for the note containing id, text for the title, and description
         const note = {
             id: createID(),
             title: noteTitle.value,
             description: noteDescr.value
         };
 
-        // Push the new transaction into the transactions array
+        // Push the new note into the notes array
         notes.push(note);
 
         // // Saving data to local storage
@@ -68,7 +69,7 @@ const addNote = (e) => {
         // typeof result;
         // console.log(result);
         
-        // Display the new transaction in the DOM
+        // Display the new note in the DOM
         displayNote(note);
     
         // Clear form fields
@@ -82,7 +83,7 @@ const addNote = (e) => {
 // Function to delete note from the notes
 const deleteNote = (id) => {
     
-    // Filter out the transaction with the provided id
+    // Filter out the note with the provided id
     // notes = notes.filter( note => note.id !== id);
 
     for (let i = 0; i < notes.length; i++) {
@@ -120,6 +121,13 @@ const init = () => {
     }
 };
 
+const deleteAll = () => {
+    notes = [];
+    init();
+    // console.log(notes);
+}
+
+delAll.onclick = deleteAll;
 
 // Event Listener
 // 1. Listen for form submit to add a note
