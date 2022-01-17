@@ -19,7 +19,7 @@ let notes = Notes;
 
 
 // Function to display notes in DOM - Notes section
-function displayNote (note) {
+const displayNote = (note) => {
     // Create a list item for the transaction
     const noteDiv = document.createElement('div');
     // Determine class based on transaction type. If positive, then credit, otherwise debit
@@ -37,13 +37,13 @@ function displayNote (note) {
 
 
 // Function to create a random ID
-function createID() {
+const createID = () => {
     return Math.floor(Math.random() * 100000000000);
 };
 
 
 // Function to add a note from the form
-function addNote(e) {
+const addNote = (e) => {
     // stop the page reload
     e.preventDefault();
     // Check id form has valid data
@@ -80,7 +80,7 @@ function addNote(e) {
 
 
 // Function to delete note from the notes
-function deleteNote(id) {
+const deleteNote = (id) => {
     
     // Filter out the transaction with the provided id
     // notes = notes.filter( note => note.id !== id);
@@ -95,7 +95,7 @@ function deleteNote(id) {
 }
 
 // Function to edit a note in the notes
-function editNote(id) {
+const editNote = (id) => {
 
     for (let i = 0; i < notes.length; i++) {
         if (notes[i].id === id) {
@@ -109,7 +109,7 @@ function editNote(id) {
 
 
 // Function to Initialize the Application
-function init() {
+const init = () => {
     // Clear all notes
     list.innerHTML = '';
     // Display all notes in db in the DOM
