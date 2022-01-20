@@ -4,6 +4,7 @@ const form = document.getElementById('add-form');
 const noteTitle = document.getElementById('note-title');
 const noteDescr = document.getElementById('note-descr');
 const delAll = document.getElementById('del-all');
+const notesHeader = document.getElementById('notes-header');
 
 
 // Temporary array of notes - to be replaced with local storage
@@ -17,7 +18,6 @@ const Notes = [
 
 // Get notes data from storage
 let notes = Notes;
-
 
 // Function to display notes in DOM - Notes section
 const displayNote = (note) => {
@@ -34,8 +34,19 @@ const displayNote = (note) => {
     `;
     // Add the li in the DOM under the ransaction history list
     list.appendChild(noteDiv);
+    // // show Notes Heading and Delete all link if there any notes
+    showHeader();
+    // if (notes.length > 0) {
+    //     notesHeader.classList.remove("hide");
+    // }
 };
 
+// function to show or hide "Notes" Heading and "Delete all" link if there any notes
+const showHeader = () => {
+    if (notes.length > 0) {
+        notesHeader.classList.remove("hide");
+    } else {notesHeader.classList.add("hide");}
+};
 
 // Function to create a random ID
 const createID = () => {
@@ -91,6 +102,7 @@ const deleteNote = (id) => {
             notes.splice(i,1);
         }
     }
+    showHeader();
     // initialize the app again to update the DOM
     init();
 }
