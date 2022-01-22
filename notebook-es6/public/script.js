@@ -6,7 +6,6 @@ const noteDescr = document.getElementById('note-descr');
 const delAll = document.getElementById('del-all');
 const notesHeader = document.getElementById('notes-header');
 
-
 const Notes = [];
 // get storedData from localStorage
 const storedData = JSON.parse(localStorage.getItem('data'));
@@ -53,7 +52,6 @@ const showHeader = () => {
 const createID = () => {
     return Math.floor(Math.random() * 100000000000);
 };
-
 
 // Function to add a note from the form
 const addNote = (e) => {
@@ -119,7 +117,6 @@ const editNote = (id) => {
     saveData();
     init();
 }
-
 
 // Function to Initialize the Application
 const init = () => {
