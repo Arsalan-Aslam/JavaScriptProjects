@@ -7,17 +7,18 @@ const delAll = document.getElementById('del-all');
 const notesHeader = document.getElementById('notes-header');
 
 
-// Temporary array of notes - to be replaced with local storage
-const Notes = [
-    // { id: 1, title: 'Assignment #1', description: 'Please complete Assignment #1' },
-    // { id: 2, title: 'Assignment #2', description: 'Please complete Assignment #2' },
-    // { id: 3, title: 'Assignment #3', description: 'Please complete Assignment #3' },
-    // { id: 4, title: 'Assignment #4', description: 'Please complete Assignment #4' },
-];
+const Notes = [];
+// get storedData from localStorage
+const storedData = JSON.parse(localStorage.getItem('data'));
 
+let notes;
 
 // Get notes data from storage
-let notes = Notes;
+if (storedData !== null) {
+    notes = storedData;
+} else {
+    notes = Notes;
+}
 
 // Function to display notes in DOM - Notes section
 const displayNote = (note) => {
@@ -74,11 +75,7 @@ const addNote = (e) => {
         notes.push(note);
 
         // // Saving data to local storage
-        // localStorage.setItem('data',JSON.stringify(notes));
-        
-        // const result = JSON.parse(localStorage.getItem('data'));
-        // typeof result;
-        // console.log(result);
+        saveData();
         
         // Display the new note in the DOM
         displayNote(note);
@@ -89,7 +86,8 @@ const addNote = (e) => {
     }
 };
 
-
+// function to save data to local storage
+const saveData = () => localStorage.setItem('data',JSON.stringify(notes));
 
 // Function to delete note from the notes
 const deleteNote = (id) => {
@@ -103,6 +101,7 @@ const deleteNote = (id) => {
         }
     }
     showHeader();
+    saveData();
     // initialize the app again to update the DOM
     init();
 }
@@ -117,6 +116,7 @@ const editNote = (id) => {
         }
     }
     // initialize the app again to update the DOM
+    saveData();
     init();
 }
 
@@ -135,6 +135,7 @@ const init = () => {
 
 const deleteAll = () => {
     notes = [];
+    saveData();
     init();
     // console.log(notes);
 }
